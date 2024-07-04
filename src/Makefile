@@ -36,6 +36,7 @@ gcov_report:
 clean:
 	rm -rf object
 	rm -rf "report file"
+	rm -rf report
 	rm -f *.info
 	rm -f *.out
 	rm -f *.gcno
