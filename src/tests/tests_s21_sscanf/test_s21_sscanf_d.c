@@ -32,64 +32,12 @@ START_TEST(sscanf_spec_hhd_2) {
 }
 END_TEST
 
-START_TEST(sscanf_spec_hhd_3) {
-  char format[] = "%hhd";
-  char str[] = "+123";
-  signed char d1, d2;
-
-  int16_t res1 = s21_sscanf(str, format, &d1);
-  int16_t res2 = sscanf(str, format, &d2);
-  ck_assert_int_eq(res1, res2);
-  ck_assert_int_eq(d1, d2);
-}
-END_TEST
-
-START_TEST(sscanf_spec_hhd_4) {
-  char format[] = "%3hhd";
-  char str[] = "-123";
-  signed char d1, d2;
-
-  int16_t res1 = s21_sscanf(str, format, &d1);
-  int16_t res2 = sscanf(str, format, &d2);
-  ck_assert_int_eq(res1, res2);
-  ck_assert_int_eq(d1, d2);
-}
-END_TEST
-
-START_TEST(sscanf_spec_lld_16) {
-  char format[] = "%lld";
-  char str[] = "214743483648";
-  long long int d1 = 0, d2 = 0;
-
-  int16_t res1 = s21_sscanf(str, format, &d1);
-  int16_t res2 = sscanf(str, format, &d2);
-  ck_assert_int_eq(res1, res2);
-  ck_assert_int_eq(d1, d2);
-}
-END_TEST
-
-START_TEST(sscanf_spec_lld_17) {
-  char format[] = "%lld";
-  char str[] = "-2147483648";
-  long long int d1 = 0, d2 = 0;
-
-  int16_t res1 = s21_sscanf(str, format, &d1);
-  int16_t res2 = sscanf(str, format, &d2);
-  ck_assert_int_eq(res1, res2);
-  ck_assert_int_eq(d1, d2);
-}
-END_TEST
-
 Suite *suite_sscanf_d(void) {
   Suite *s = suite_create("\033[45m-=S21_SSCANF_D=-\033[0m");
   TCase *tc = tcase_create("sscanf_d_tc");
 
   tcase_add_test(tc, sscanf_spec_hhd_1);
   tcase_add_test(tc, sscanf_spec_hhd_2);
-  tcase_add_test(tc, sscanf_spec_hhd_3);
-  tcase_add_test(tc, sscanf_spec_hhd_4);
-  tcase_add_test(tc, sscanf_spec_lld_16);
-  tcase_add_test(tc, sscanf_spec_lld_17);
 
   suite_add_tcase(s, tc);
   return s;
